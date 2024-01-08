@@ -1,0 +1,14 @@
+server:
+  port: 9229
+spring:
+  datasource:
+    username: postgres
+    password: password
+    url: jdbc:postgresql://127.0.0.1:5432/database
+  batch:
+    jdbc:
+      initialize-schema: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+
