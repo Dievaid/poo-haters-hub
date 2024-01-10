@@ -27,5 +27,6 @@ public class Post {
     private List<Comment> comments;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_like")
     private List<Like> likes;
 }

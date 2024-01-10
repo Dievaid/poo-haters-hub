@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +33,7 @@ public class PostService {
 
     public void createPost(PostDTO postDTO, String uid) throws UserNotFoundError {
         var post = modelMapper.map(postDTO, Post.class);
+        post.setCreatedAt(Timestamp.from(Instant.now()));
         post.setUser(userRepository.findById(uid).orElseThrow(UserNotFoundError::new));
         postRepository.save(post);
     }
@@ -61,6 +64,7 @@ public class PostService {
         var post = postRepository.findById(postUid).orElseThrow(PostNotFoundError::new);
         var comment = commentRepository.save(modelMapper.map(commentDTO, Comment.class));
         comment.setUser(user);
+        comment.setCreatedAt(Timestamp.from(Instant.now()));
         post.getComments().add(comment);
         postRepository.save(post);
     }
