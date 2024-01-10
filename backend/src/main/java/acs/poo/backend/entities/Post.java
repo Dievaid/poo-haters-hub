@@ -25,4 +25,7 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Like> likes;
 }

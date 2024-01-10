@@ -11,4 +11,6 @@ import lombok.Data;
 public class User {
     @Id
     private String uid;
+
+    private String imgUrl;
 }
