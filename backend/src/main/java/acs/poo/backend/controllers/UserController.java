@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -24,5 +26,10 @@ public class UserController {
     public ResponseEntity<Void> updateUser(@RequestBody User user) throws UserNotFoundError {
         userService.updateUser(user);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> users() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }

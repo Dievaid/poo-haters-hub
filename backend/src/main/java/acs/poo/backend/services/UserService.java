@@ -7,6 +7,9 @@ import acs.poo.backend.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.StreamSupport;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -24,5 +27,9 @@ public class UserService {
         if (!userRepository.existsById(user.getUid())) {
             throw new UserNotFoundError();
         }
+    }
+
+    public List<User> getAllUsers() {
+        return StreamSupport.stream(userRepository.findAll().spliterator(), false).toList();
     }
 }
