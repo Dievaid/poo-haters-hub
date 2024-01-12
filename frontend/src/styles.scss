@@ -6,6 +6,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+$primary: #f3f5f7;
 
 :root {
     background-color: #101010;
@@ -30,6 +31,9 @@
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    --icon-color: #{$primary};
 }
 
 .dark {
@@ -55,7 +59,6 @@
 }
 
 
-// $primary: #f3f5f7;
 
 // :root {
 //     background-color: #101010;
@@ -64,6 +67,6 @@
 //     --icon-color: #{$primary};
 // }
 
-// h1, h2, h3, h4, h5, h6, p, a, li, ul, div, span {
-//     color: $primary;
-// }
+h1, h2, h3, h4, h5, h6, p, a, li, ul, div, span {
+    color: $primary;
+}

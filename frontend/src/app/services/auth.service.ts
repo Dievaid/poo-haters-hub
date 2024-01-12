@@ -1,23 +1,39 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Injectable, inject } from '@angular/core';
+import {
+  Auth,
+  authState,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from '@angular/fire/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  private authFirebase = inject(Auth);
+  authState$ = authState(this.authFirebase);
 
-  constructor(private afs: AngularFireAuth) { }
+  constructor() {}
 
   signInWithGoogle() {
-    return this.afs.signInWithPopup(new GoogleAuthProvider());
+    return signInWithPopup(
+      this.authFirebase,
+      new GoogleAuthProvider().setCustomParameters({ prompt: 'select_account' })
+    );
   }
 
-  registerWithEmailAndPass(user: {email: string, password: string}) {
-    return this.afs.createUserWithEmailAndPassword(user.email, user.password);
+  registerWithEmailAndPass(email: string, password: string) {
+    return createUserWithEmailAndPassword(this.authFirebase, email, password);
   }
 
-  signInWithEmailAndPass(user: {email: string, password: string}) {
-    return this.afs.signInWithEmailAndPassword(user.email, user.password);
+  signInWithEmailAndPass(email: string, password: string) {
+    return signInWithEmailAndPassword(this.authFirebase, email, password);
+  }
+
+  signOut() {
+    return signOut(this.authFirebase);
   }
 }
