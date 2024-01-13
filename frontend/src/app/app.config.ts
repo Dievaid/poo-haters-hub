@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
