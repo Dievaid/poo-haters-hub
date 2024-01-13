@@ -19,9 +19,14 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+      - "15674:15674"
     environment:
       RABBITMQ_DEFAULT_USER: username
       RABBITMQ_DEFAULT_PASS: password
+    #   RABBITMQ_PLUGINS_DIR: /opt/rabbitmq/plugins:/usr/lib/rabbitmq/plugins
+    # volumes:
+    #   - ./rabbit/enabled_plugins:/etc/rabbitmq/enabled_plugins
+    #   - ./rabbit/plugins:/usr/lib/rabbitmq/plugins
     networks:
       - backend
   
