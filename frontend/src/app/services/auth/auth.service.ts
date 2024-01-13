@@ -8,6 +8,7 @@ import {
   signOut,
 } from '@angular/fire/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { ApiService } from '../api/api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,16 @@ export class AuthService {
   private authFirebase = inject(Auth);
   authState$ = authState(this.authFirebase);
 
-  constructor() {}
+  constructor(private apiService: ApiService) {
+    this.authState$.subscribe((user) => {
+      if (user) {
+        this.apiService.hasUser(user.uid).subscribe((res) => {
+          console.log(res);
+          this.apiService.addUser(user.uid, user.photoURL || '');
+        });
+      }
+    });
+  }
 
   signInWithGoogle() {
     return signInWithPopup(
