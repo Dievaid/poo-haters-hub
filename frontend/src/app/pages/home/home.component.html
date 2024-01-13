@@ -1,2 +1,8 @@
 <navbar></navbar>
-<p>Hey</p>
+@for (post of posts; track $index) {
+<post class="" [postData]="post"></post>
+<hr class="my-3 border-gray-700" />
+
+}
+<button hlmBtn variant='outline' class="text-white">For you</button>
+

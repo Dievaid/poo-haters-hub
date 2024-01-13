@@ -1,5 +1,15 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserData } from '../auth/auth.service';
+
+export interface PostData {
+  uid: string;
+  content: string;
+  createdAt: string;
+  user: UserData;
+  comments: any[];
+  likes: any[];
+}
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +20,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  getUsers() {
+    return this.http.get<UserData[]>(this.url + '/users');
+  }
+
   hasUser(uid: string) {
-    return this.http.get(this.url + '/users/' + uid);
+    return this.http.get<UserData>(this.url + '/users/' + uid);
   }
 
   addUser(uid: string, imgUrl: string) {
@@ -32,6 +46,15 @@ export class ApiService {
   }
 
   getPosts() {
-    return this.http.get(this.url + '/posts');
+    return this.http.get<PostData[]>(this.url + '/posts');
+  }
+
+  addLike(userId: string, postId: string) {
+    const headers = {
+      'content-type': 'application/json',
+    };
+    const body = JSON.stringify({ userId, postId });
+    console.log(body);
+    return this.http.post(this.url + '/like', body, { headers });
   }
 }
