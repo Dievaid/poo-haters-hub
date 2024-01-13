@@ -11,4 +11,4 @@ Use this for RabbitMQ: rabbitmq-plugins enable rabbitmq_web_stomp
 
 Copyright David Capragiu & Florian-Luis Micu 2024
 
-God bless
+God bless!
