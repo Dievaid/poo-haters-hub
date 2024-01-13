@@ -5,13 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiService {
-  // private url = 'http://backend:9229';
-  private url = 'http://feed-oop.ddns.net:9229';
+  private url = 'http://localhost:9229';
+  // private url = 'http://feed-oop.ddns.net:9229';
 
   constructor(private http: HttpClient) {}
 
   hasUser(uid: string) {
-    return this.http.get(this.url + '/users');
+    return this.http.get(this.url + '/users/' + uid);
   }
 
   addUser(uid: string, imgUrl: string) {
