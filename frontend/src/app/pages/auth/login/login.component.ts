@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import {
   FormControl,
@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
     this.authService
       .signInWithEmailAndPass(email!, password!)
       .then(() => {
+        
         this.router.navigateByUrl('home');
       })
       .catch((err) => {
