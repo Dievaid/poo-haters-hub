@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -20,5 +20,18 @@ export class ApiService {
     };
     const body = JSON.stringify({ uid, imgUrl });
     return this.http.post(this.url + '/users', body, { headers });
+  }
+
+  addPost(uid: string, content: string) {
+    const headers = {
+      'content-type': 'application/json',
+    };
+    const params = new HttpParams().set('userId', uid);
+    const body = JSON.stringify({ content });
+    return this.http.post(this.url + '/posts', body, { headers, params });
+  }
+
+  getPosts() {
+    return this.http.get(this.url + '/posts');
   }
 }
