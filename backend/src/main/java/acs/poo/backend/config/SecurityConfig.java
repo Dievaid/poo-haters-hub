@@ -16,7 +16,6 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(List.of(
-                "http://localhost:4200",
                 "https://oop-feed.vercel.app",
                 "https://feed-local.vercel.app"
         ));
