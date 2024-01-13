@@ -10,3 +10,5 @@ Use this for RabbitMQ: rabbitmq-plugins enable rabbitmq_web_stomp
 ## Attributions
 
 Copyright David Capragiu & Florian-Luis Micu 2024
+
+God bless
