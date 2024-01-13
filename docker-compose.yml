@@ -40,5 +40,22 @@ services:
     networks:
       - backend
 
+  frontend:
+    image: node:20.10
+    container_name: node-frontend
+    restart: always
+    command: bash -c "
+      (
+        cd frontend;
+        npm i &&
+        npx ng serve --host 0.0.0.0;
+      )"
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/frontend
+    networks:
+      - backend
+
 networks:
   backend:

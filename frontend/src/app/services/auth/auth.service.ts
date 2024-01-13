@@ -20,10 +20,13 @@ export class AuthService {
   constructor(private apiService: ApiService) {
     this.authState$.subscribe((user) => {
       if (user) {
-        this.apiService.hasUser(user.uid).subscribe((res) => {
-          console.log(res);
-          this.apiService.addUser(user.uid, user.photoURL || '');
-        });
+        this.apiService
+          .addUser(user.uid, user.photoURL || '')
+          .subscribe((res) => {
+            this.apiService.hasUser(user.uid).subscribe((res) => {
+              console.log(res, user.uid, user.photoURL);
+            });
+          });
       }
     });
   }
