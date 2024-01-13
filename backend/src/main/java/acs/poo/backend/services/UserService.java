@@ -32,4 +32,8 @@ public class UserService {
     public List<User> getAllUsers() {
         return StreamSupport.stream(userRepository.findAll().spliterator(), false).toList();
     }
+
+    public User getUserById(String uid) throws UserNotFoundError {
+        return userRepository.findById(uid).orElseThrow(UserNotFoundError::new);
+    }
 }

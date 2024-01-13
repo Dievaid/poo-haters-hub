@@ -73,4 +73,12 @@ public class PostService {
         var post = postRepository.findById(postUid).orElseThrow(PostNotFoundError::new);
         postRepository.delete(post);
     }
+
+    public Post getPostById(String postUid) throws PostNotFoundError {
+        return postRepository.findById(postUid).orElseThrow(PostNotFoundError::new);
+    }
+
+    public List<Post> getPostsByUserId(String userId) throws UserNotFoundError {
+        return postRepository.findAllByUserIn(List.of(userRepository.findById(userId).orElseThrow(UserNotFoundError::new)));
+    }
 }

@@ -32,4 +32,9 @@ public class UserController {
     public ResponseEntity<List<User>> users() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
+
+    @GetMapping("/{uid}")
+    public ResponseEntity<User> getUser(@PathVariable String uid) throws UserNotFoundError {
+        return ResponseEntity.ok(userService.getUserById(uid));
+    }
 }

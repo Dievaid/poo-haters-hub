@@ -46,4 +46,14 @@ public class PostController {
         postService.addCommentToPost(userId, postId, commentDTO);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/find")
+    public ResponseEntity<Post> getPostById(@RequestParam String postId) throws PostNotFoundError {
+        return ResponseEntity.ok(postService.getPostById(postId));
+    }
+
+    @GetMapping("/find/{userId}")
+    public ResponseEntity<List<Post>> getPostsByUserId(@PathVariable String userId) throws UserNotFoundError {
+        return ResponseEntity.ok(postService.getPostsByUserId(userId));
+    }
 }
